@@ -17,4 +17,9 @@ choose_framework_txt = canvas.create_text(250, 40, text="Please choose a framewo
 canvas.pack()
 button = tk.Button(win, text="test click", width=10, height=5, command=button_func)
 button.place(x=200, y=50)
+
+label = tk.Label(win, text="Test label", padx=10)
+label.place(x=300, y=50)
+label.pack(padx=20, pady=10)
+label.bind("<Button-1>", lambda f: button_func())
 win.mainloop()  # running the loop that works as a trigger

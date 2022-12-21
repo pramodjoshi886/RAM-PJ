@@ -1,4 +1,6 @@
 from pymongo import MongoClient
+from datetime import datetime
+import random
 
 
 def add_expense(amount, date, toe: str, message=" "):
@@ -11,5 +13,10 @@ def add_expense(amount, date, toe: str, message=" "):
     return
 
 
+
+
 if __name__ == "__main__":
-    add_expense(200, "food", "spent at ein/aus-stand")
+    toe = ["food", "transport", "education", "rent", "games"]
+    expense = [200, 100, 40, 290, 450]
+    date = datetime.now()
+    add_expense(random.choice(expense), date, random.choice(toe))

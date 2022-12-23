@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime, timedelta
 import random
 
 
@@ -25,6 +25,23 @@ def remove_expense(name):
     client = MongoClient()
     db = client["expense"]
     db.collection.delete_one({"name": name})
+
+
+def view_expense_past_n_days(n):
+    client = MongoClient()
+    db = client["expense"]
+    current_date = datetime.now()
+    past_date = current_date - timedelta(days=n)
+    expenses = db.collection.find({'date': {'$gte': past_date}})
+
+    return expenses
+
+
+def view_all_expense():
+    client = MongoClient()
+    db = client["expense"]
+    expenses = db.collection.find({})
+    return expenses
 
 
 if __name__ == "__main__":
